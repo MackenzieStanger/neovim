@@ -9,13 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: Impersonate update bot
-        uses: tibdex/github-app-token@v1
-        id: generate-token
-        with:
-          app_id: ${{ secrets.APP_ID }}
-          private_key: ${{ secrets.APP_PRIVATE_KEY }}
-
       - name: Checkout
         uses: actions/checkout@v3
         with:
@@ -25,11 +18,9 @@ jobs:
       - name: Fetch upstream
         run: |
           git remote add upstream https://github.com/neovim/neovim.git
-          git fetch upstream --no-tags
+          git fetch upstream
       - name: Rebase onto upstream
         run: |
-          git config user.name "MackenzieStanger"
-          git config user.email "MackenzieStanger@users.noreply.github.com"
           git rebase upstream/master
       - name: Push changes
-        run: git push --force
+        run: git push --force --tags
