@@ -28,8 +28,8 @@ jobs:
           git fetch upstream --no-tags
       - name: Rebase onto upstream
         run: |
-          git config user.name "antoineco"
-          git config user.email "antoineco@users.noreply.github.com"
+          git config user.name "MackenzieStanger"
+          git config user.email "MackenzieStanger@users.noreply.github.com"
           git rebase upstream/master
       - name: Push changes
         run: git push --force
